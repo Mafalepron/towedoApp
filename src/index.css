@@ -30,3 +30,13 @@ body {
     text-align: right;
   
   }
+
+  .delButton {
+    text-align: right;
+  }
+
+  #nt {
+    margin-left: 30%;
+    margin-top: 5%;
+  }
+

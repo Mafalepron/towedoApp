@@ -2,16 +2,10 @@ import React, {useState} from 'react'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { IconButton, TextField } from '@mui/material';
 
+
 function AddTowedos({onCreate})  {
-    // constructor({ onCreate }) {
-    //     super({ onCreate });
-    //     this.state = {
-    //         fieldOne: '',
-    //         fieldTwo: '',
-    //         fieldThree: '',
-    //         fieldFour: '',
-    //     }
-    // }
+ 
+
     const [fieldOne, setfieldOne] = useState('');
     const [fieldTwo, setfieldTwo] = useState('');
     const [fieldThree, setfieldThree] = useState('');
@@ -20,20 +14,23 @@ function AddTowedos({onCreate})  {
 
 
     function handleSubmit(event) {
-        // const isValidName = this.state.fieldOne;
-        // const isValidField = [this.state.fieldTwo, this.state.fieldThree, this.state.fieldFour];
+        event.preventDefault()
+        const isValidName = fieldOne;
+        const isValidField = [fieldTwo, fieldThree, fieldFour];
 
-        // for (let i = 0; i <= 2; i++) {
-        //     if (isValidField[i].length > 120) {
-        //         alert("2,3,4 field's can't be more than 120 letters")  
-        //     }
-        // };
+        for (let i = 0; i <= 2; i++) {
+            if (isValidField[i].length > 120) {
+            return alert("2,3,4 field's can't be more than 120 letters")  
+            }
+        };
 
-        // if (isValidName.length < 3) {
-        //     alert("Name field can't be less than 3 letters")
-        // };
-        if (event.value.trim()) {
-            onCreate(event.value)
+        if (isValidName.length < 3 || isValidName.length > 16) {
+            return alert("Name field can't be less than 3 letters and cant't be more than 16 letters")
+        };
+
+        if (fieldOne.trim()) {
+            onCreate(fieldOne, fieldTwo, fieldThree, fieldFour)
+            setfieldOne(''); setfieldTwo('');setfieldThree(''); setfieldFour('');
         }
     };
 
@@ -70,8 +67,8 @@ function AddTowedos({onCreate})  {
                     onChange={event => setfieldFour(event.target.value)}
                 />
                 <br />
-                    <span className="addButton">
-                        <IconButton  size="small">
+                    <span className="addButton" >
+                        <IconButton  size="small" type="submit">
                             <AddCircleOutlineIcon fontSize="large" />
                         </IconButton>
                     </span>

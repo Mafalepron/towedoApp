@@ -1,19 +1,54 @@
 import React, {useContext} from "react";
 import Context from "../../../context";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function TowedoItem(props) {
-    const { removeTowedo } = useContext(Context);
-    return (
-            <div>
-                {props.towedo.fieldOne}
+  const { removeTowedo } = useContext(Context);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <Button onClick={handleOpen}>{props.towedo.fieldOne}</Button>
+      <Button onClick={() => removeTowedo(props.towedo.id)}><RemoveCircleOutlineIcon className="delButton"/></Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          {props.towedo.fieldOne}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {props.towedo.fieldTwo}
+                <br />                
+            {props.towedo.fieldThree}
                 <br />
-                {props.towedo.fieldTwo}
+            {props.towedo.fieldFour}
                 <br />
-                {props.towedo.fieldThree}
-                <br />
-                {props.towedo.fieldFour}
-                <br />
-                <button onClick={() => removeTowedo(props.towedo.id)}>del</button>
-            </div>
-    ) 
-};
+            <Button onClick={handleClose}><h2>Закрыть</h2></Button>
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
+  );
+}

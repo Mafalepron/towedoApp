@@ -7,9 +7,6 @@ import Context from './context'
 function App() {
 
   const [towedos, setTowedos] = React.useState([
-    {id:1, fieldOne: "wow", fieldTwo: "ww" , fieldThree: "www", fieldFour:"2"},
-    {id:2, fieldOne: "wow", fieldTwo: "ww" , fieldThree: "www", fieldFour:"2"},
-    {id:3, fieldOne: "wow", fieldTwo: "ww" , fieldThree: "www", fieldFour:"2"},
   ])
 
   const removeTowedo = (id) => {
@@ -38,7 +35,7 @@ function App() {
             {towedos.length ? (
               <TowedoList towedos={towedos}/>
             ) : (
-              <h2>No towedos!</h2>
+              <h2 id="nt">No towedos!</h2>
 )}
         </div>
     </div>
